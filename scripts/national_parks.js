@@ -19,4 +19,36 @@ window.onload = () => {
 
 
 
+    initParkLocationsDroopdown();
+
+
+
+}
+
+
+function initParkLocationsDroopdown() {
+
+    let parkLocationsDropdown = document.querySelector("#parkSelect");
+    // create the element for the default option 
+    let defaultOption = document.createElement("option");
+    // This is the value of the selected value 
+    defaultOption.value = "";
+    // This is what is displayed in the dropdown 
+    defaultOption.textContent = "Select A Park Loacation";
+    // add the option we created to the dropdown
+    parkLocationsDropdown.appendChild(defaultOption);
+
+    // write a loop to work with each indivduial category and build an option for it 
+    locationsArray.forEach((location) => {
+        // create  new option to the dropdown 
+        let newOption = document.createElement("option");
+        // set the value for the option 
+        newOption.value = location;
+        // set the textContent
+        newOption.textContent = location;
+
+        parkLocationsDropdown.appendChild(newOption);
+
+
+    })
 }
