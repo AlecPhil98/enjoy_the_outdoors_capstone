@@ -18,15 +18,49 @@ window.onload = () => {
     console.log(nationalParksArray)
 
 
-
-    initParkLocationsDroopdown();
-
-
+    // run the code that laodds the state location 
+    initParkLocationsDropdown();
+    // get the location drop down 
+    let parkLacationsDropdown = document.querySelector("#parkSelect");
+    // make sure we run the code to work with the nation park data 
+    parkLacationsDropdown.addEventListener("change", getLocation);
 
 }
 
+function getLocation(dog) {
+    // get the selected location drom the dropdown which is the event.target
+    let selectedPark = dog.target.value;
 
-function initParkLocationsDroopdown() {
+    console.log(selectedPark)
+
+    let matchingLocations = nationalParksArray.filter((nationalPark) => {
+
+
+        return nationalPark.State === selectedPark;
+
+
+
+    })
+
+    let tablebody = document.querySelector("#nationalParkTableBody");
+
+    selectedPark.forEach((park) => {
+
+        buildTableRow(tablebody, park);
+
+    })
+
+}
+
+buildTableRow((tablebody,data)=>{
+    // create the row to create th data
+    let newRow = tablebody.insertRow();
+
+
+
+})
+
+function initParkLocationsDropdown() {
 
     let parkLocationsDropdown = document.querySelector("#parkSelect");
     // create the element for the default option 
@@ -51,4 +85,19 @@ function initParkLocationsDroopdown() {
 
 
     })
+}
+
+function getNationalParkInLoactions(nationalParksArray, State) {
+
+    let matching = [];
+
+    let numItems = nationalParksArray.length;
+
+    for (let i = 0; i < numItems; i++) {
+
+        if (nationalParksArray[i].State === State) {
+            matching.push(nationalParksArray[i]);
+        }
+    }
+    return matching;
 }
