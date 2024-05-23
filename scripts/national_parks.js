@@ -18,7 +18,7 @@ window.onload = () => {
     console.log(nationalParksArray)
 
 
-    // run the code that laodds the state location 
+    // run the code that loads the drop downs
     initParkLocationsDropdown();
     inintParkTypeDropdown();
 
@@ -30,8 +30,48 @@ window.onload = () => {
     let parkTypeOf = document.querySelector("#parkTypeOf")
     parkTypeOf.addEventListener("change", getParkTypeOf)
 
+
+    // hideElement("#parkSelect")
+    // hideElement("#parkTypeOf")
+
+    // let locationRadio = document.querySelector("#parkLocationRadio")
+    // let parkTypeRadio = document.querySelector("#parkTypeRadio")
+
+    // locationRadio.addEventListener("change", hideShhowRadioDog)
+    // parkTypeRadio.addEventListener("change", hideShhowRadioDog)
+
+
+
 }
-// function for getting the body table forpark location 
+
+// function hideShhowRadioDog(event) {
+
+//     if (event.target.value === "type") {
+//         showElement("parkTypeOf")
+//         hideElement("parkSelect");
+//     } else {
+//         showElement("parkSelect")
+//         hideElement("parkTypeOf");
+//     }
+// }
+
+
+// //This function will hide an HTML element on the page
+// //Just pass it the id of the element you want to hide
+// function hideElement(someSelector) {
+//     let el = document.querySelector(someSelector);
+//     el.style.display = "none";
+// }
+
+// //This function will show an HTML element on the page
+// //Just pass it the id of the element you want to show
+// function showElement(someSelector) {
+//     let el = document.querySelector(someSelector);
+//     el.style.display = "block";
+// }
+
+
+// function for getting the body table for park location 
 function getLocation(event) {
     // get the selected location drom the dropdown which is the event.target
     let selectedPark = event.target.value;
@@ -64,17 +104,17 @@ function getParkTypeOf(event2) {
 
     let matchingParkType = nationalParksArray.filter((parkType) => {
 
-        return parkType.LocationName === selectedParkType;
+        return parkType.LocationName.indexOf(selectedParkType.toLowerCase());
 
     })
 
-    let tableBodyTypeOf = document.querySelector("#parkTypeTableBody")
+    let tablebody = document.querySelector("#nationalParkTableBody");
 
-    tableBodyTypeOf.innerHTML = ""
+    tablebody.innerHTML = ""
 
     matchingParkType.forEach((parkType) => {
 
-        buildTypeOfTableRow(typeOFTableBody, parkType)
+        buildTableRow(tablebody, parkType)
 
 
     })
@@ -89,11 +129,19 @@ function buildTableRow(tablebody, data) {
     // loop over alll the properties in the objext and create a cell for them 
     for (let property in data) {
 
+        if (property === "Location" || property === "Visit") {
+
+            continue
+        }
+
         let newTd = newRow.insertCell();
         newTd.innerText = data[property];
+
+
     }
 
-
+    let newTd = newRow.insertCell();
+    newTd.innerText = (data.Visit) ? data.Visit : "N/a";
 }
 
 // function for building the body table for park type search using normal 
@@ -181,7 +229,7 @@ function inintParkTypeDropdown() {
     defaultOption.value = "";
 
     // This is what is displayed in the dropdown 
-    defaultOption.textContent = "Select A Park Location";
+    defaultOption.textContent = "Select A Park Type";
 
     // add the option we created to the dropdown
     parkTypeDropdown.appendChild(defaultOption);
@@ -201,6 +249,21 @@ function inintParkTypeDropdown() {
 
 }
 
+function getParkType(nationalParksArray, LocationName) {
+
+    let matching = [];
+
+    let numItems = nationalParksArray.length
+
+    for (let i = 0; i < numItems; i++) {
+
+        if (nationalParksArray[i].LocationID === LocationName) {
+            matching.push(nationalParksArray[i]);
+        }
+    }
+    return matching;
+
+}
 
 
 function getNationalParkInLoactions(nationalParksArray, State) {

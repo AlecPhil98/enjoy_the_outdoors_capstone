@@ -38,14 +38,14 @@
     <!-- button by location -->
     <div class="d-inline-flex p-2">
 
-      <input type="radio" name="locationOrType" id="parkLocation" value="location" checked>
+      <input type="radio" name="locationOrType" id="parkLocationRadio" value="location">
       <label for="locationOrType">Location</label>
 
     </div>
     <!-- button by type of of park -->
     <div class="d-inline-flex p-2">
 
-      <input type="radio" name="locationOrType" id="parkType" value="typeOf">
+      <input type="radio" name="locationOrType" id="parkTypeRadio" value="typeOf">
       <label for="locationOrType">Type</label>
 
     </div>
@@ -63,7 +63,7 @@
   </select>
 
   <!-- this is our table for our results -->
-  <table id="nationalParkTable" name="nationalParkTable">
+  <table id="nationalParkTable" class="table table-striped">
 
     <head>
       <th>LocationID</th>
@@ -74,7 +74,9 @@
       <th>ZipCode</th>
       <th>Phone</th>
       <th>Fax</th>
-      <th>URL</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>URl</th>
     </head>
     <tbody id="nationalParkTableBody" name="nationalParkTableBody">
 
@@ -83,26 +85,7 @@
 
   </table>
 
-  <table id="parkTypeTable" name="parkTypeTable">
-
-    <head>
-      <th>LocationID</th>
-      <th>LocationName</th>
-      <th>Address</th>
-      <th>City</th>
-      <th>State</th>
-      <th>ZipCode</th>
-      <th>Phone</th>
-      <th>Fax</th>
-      <th>URL</th>
-    </head>
-    <tbody id="parkTypeTableBody" name="parkTypeTableBody">
-
-
-    </tbody>
-
-  </table>
-  
+ 
   
 
   <!-- Bootstrap JavaScript -->
