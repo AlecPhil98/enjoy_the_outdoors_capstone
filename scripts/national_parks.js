@@ -21,17 +21,17 @@ window.onload = () => {
     // run the code that laodds the state location 
     initParkLocationsDropdown();
     // get the location drop down 
-    let parkLacationsDropdown = document.querySelector("#parkSelect");
+    let parkLocationsDropdown = document.querySelector("#parkSelect");
     // make sure we run the code to work with the nation park data 
-    parkLacationsDropdown.addEventListener("change", getLocation);
+    parkLocationsDropdown.addEventListener("change", getLocation);
 
 }
 
-function getLocation(dog) {
+function getLocation(event) {
     // get the selected location drom the dropdown which is the event.target
-    let selectedPark = dog.target.value;
+    let selectedPark = event.target.value;
 
-    console.log(selectedPark)
+    // console.log(selectedPark)
 
     let matchingLocations = nationalParksArray.filter((nationalPark) => {
 
@@ -44,21 +44,30 @@ function getLocation(dog) {
 
     let tablebody = document.querySelector("#nationalParkTableBody");
 
-    selectedPark.forEach((park) => {
+    tablebody.innerHTML = "";
 
-        buildTableRow(tablebody, park);
+    matchingLocations.forEach((nationalPark) => {
+
+        buildTableRow(tablebody, nationalPark);
 
     })
 
 }
 
-buildTableRow((tablebody,data)=>{
+function buildTableRow(tablebody, data) {
     // create the row to create th data
     let newRow = tablebody.insertRow();
 
+    // loop over alll the properties in the objext and create a cell for them 
+    for (let property in data) {
+
+        let newTd = newRow.insertCell();
+        newTd.innerText = data[property];
+    }
 
 
-})
+
+}
 
 function initParkLocationsDropdown() {
 
@@ -68,7 +77,7 @@ function initParkLocationsDropdown() {
     // This is the value of the selected value 
     defaultOption.value = "";
     // This is what is displayed in the dropdown 
-    defaultOption.textContent = "Select A Park Loacation";
+    defaultOption.textContent = "Select A Park Location";
     // add the option we created to the dropdown
     parkLocationsDropdown.appendChild(defaultOption);
 
