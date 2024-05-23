@@ -104,7 +104,7 @@ function getParkTypeOf(event2) {
 
     let matchingParkType = nationalParksArray.filter((parkType) => {
 
-        return parkType.LocationName.indexOf(selectedParkType.toLowerCase());
+        return parkType.LocationName.toLowerCase().indexOf(selectedParkType.toLowerCase())!==-1;
 
     })
 
