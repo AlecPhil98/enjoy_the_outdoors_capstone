@@ -17,19 +17,72 @@ window.onload = () => {
 
     let mountainDropDown = document.querySelector("#mountainDropDown")
 
-    mountainDropDown.addEventListener("chnage",displayMountatinCard)
+    mountainDropDown.addEventListener("change", displayMountatinCard)
 
 }
 
 
 
-function displayMountatinCard(){
+function displayMountatinCard(event) {
+
+    // holds where the mountain cards will be held
+    let mountainDiv = document.querySelector("#mountainsCards")
+
+    // clears out the previous mountain information 
+    mountainDiv.innerHTML = ""
+
+    let mountain = mountainsArray.find((mountain) => mountain.name === event.target.value);
+
+    //create card div and add its classes 
+    let cardDiv = document.createElement("div");
+    cardDiv.classList.add("card", "w-25");
+
+    // creates the timag and set it properties 
+    let cardImage = document.createElement("img");
+    cardImage.classList.add("card-img-top", "card-img-fit");
+
+    //add the source to the images 
+    cardImage.src = `./images/${mountain.img}`
+    console.log(cardImage)
+    cardImage.alt = mountain.name;
+
+    // add the image and the cardDiv 
+    cardDiv.appendChild(cardImage);
+
+    // create the card body and add its classes 
+    let cardBody = document.createElement("div");
+    cardBody.classList.add("card-body");
+
+    // lets create the card title 
+    let cardTitle = document.createElement("h5");
+    cardTitle.classList.add("card-title");
+
+    cardTitle.innerHTML = mountain.name;
+
+    // set the pet name as the card body 
+    cardBody.appendChild(cardTitle);
+
+    // create the p tag for the card details 
+    let cardText = document.createElement("p");
+    cardTitle.classList.add("card-text");
+
+    cardText.innerHTML = `
+    ${mountain.desc} 
+    `
+    // add the cardText to the cardBody
+    cardBody.appendChild(cardText)
+
+    // add the card body to card div 
+    cardDiv.appendChild(cardBody)
+
+    mountainDiv.appendChild(cardDiv)
+
 
 
 }
 
-function initmountainDropDown(){
-let mountainDropDown = document.querySelector("#mountainDropDown");
+function initmountainDropDown() {
+    let mountainDropDown = document.querySelector("#mountainDropDown");
     // create the element for the default option 
     let defaultOption = document.createElement("option");
 
@@ -49,10 +102,10 @@ let mountainDropDown = document.querySelector("#mountainDropDown");
         let newOption = document.createElement("option");
 
         // set the value for the option 
-        newOption.value = peak;
+        newOption.value = peak.name;
 
         // set the textContent
-        newOption.textContent = peak;
+        newOption.textContent = peak.name;
 
         mountainDropDown.appendChild(newOption);
 
