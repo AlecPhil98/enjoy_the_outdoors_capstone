@@ -20,16 +20,22 @@ window.onload = () => {
 
     // run the code that laodds the state location 
     initParkLocationsDropdown();
+    inintParkTypeDropdown();
+
     // get the location drop down 
     let parkLocationsDropdown = document.querySelector("#parkSelect");
     // make sure we run the code to work with the nation park data 
     parkLocationsDropdown.addEventListener("change", getLocation);
 
-}
+    let parkTypeOf = document.querySelector("#parkTypeOf")
+    parkTypeOf.addEventListener("change", getParkTypeOf)
 
+}
+// function for getting the body table forpark location 
 function getLocation(event) {
     // get the selected location drom the dropdown which is the event.target
     let selectedPark = event.target.value;
+
 
     // console.log(selectedPark)
 
@@ -51,7 +57,31 @@ function getLocation(event) {
     })
 
 }
+// function for getting the body table for type of park 
+function getParkTypeOf(event2) {
 
+    let selectedParkType = event2.target.value
+
+    let matchingParkType = nationalParksArray.filter((parkType) => {
+
+        return parkType.LocationName === selectedParkType;
+
+    })
+
+    let tableBodyTypeOf = document.querySelector("#parkTypeTableBody")
+
+    tableBodyTypeOf.innerHTML = ""
+
+    matchingParkType.forEach((parkType) => {
+
+        buildTypeOfTableRow(typeOFTableBody, parkType)
+
+
+    })
+
+}
+
+// function for building the body table for park location search
 function buildTableRow(tablebody, data) {
     // create the row to create th data
     let newRow = tablebody.insertRow();
@@ -62,6 +92,47 @@ function buildTableRow(tablebody, data) {
         let newTd = newRow.insertCell();
         newTd.innerText = data[property];
     }
+
+
+}
+
+// function for building the body table for park type search using normal 
+function buildTypeOfTableRow(typeOFTableBody, parkType) {
+
+    let newTypeRow = typeOFTableBody.insertRow();
+
+    let cell1 = newTypeRow();
+    cell1.innerHTML = parkType.LocationID;
+
+    let cell2 = newTypeRow();
+    cell2.innerHTML = parkType.LocationName;
+
+
+    let cell3 = newTypeRow();
+    cell3.innerHTML = parkType.Address;
+
+
+    let cell4 = newTypeRow();
+    cell4.innerHTML = parkType.City;
+
+
+    let cell5 = newTypeRow();
+    cell5.innerHTML = parkType.State;
+
+
+    let cell6 = newTypeRow();
+    cell6.innerHTML = parkType.ZipCode;
+
+
+    let cell7 = newTypeRow();
+    cell7.innerHTML = parkType.Phone;
+
+    let cell8 = newTypeRow();
+    cell8.innerHTML = parkType.Fax;
+
+
+    let cell9 = newTypeRow();
+    cell9.innerHTML = parkType.URL;
 
 
 
@@ -99,6 +170,38 @@ function initParkLocationsDropdown() {
 
     })
 }
+
+function inintParkTypeDropdown() {
+    let parkTypeDropdown = document.querySelector("#parkTypeOf");
+
+    // create the element for the default option 
+    let defaultOption = document.createElement("option");
+
+    // This is the value of the selected value 
+    defaultOption.value = "";
+
+    // This is what is displayed in the dropdown 
+    defaultOption.textContent = "Select A Park Location";
+
+    // add the option we created to the dropdown
+    parkTypeDropdown.appendChild(defaultOption);
+
+    parkTypesArray.forEach((parkLocation) => {
+
+        let newParkTypeOption = document.createElement("option");
+
+        newParkTypeOption.value = parkLocation;
+
+        newParkTypeOption.textContent = parkLocation;
+
+        parkTypeDropdown.appendChild(newParkTypeOption);
+
+
+    })
+
+}
+
+
 
 function getNationalParkInLoactions(nationalParksArray, State) {
 

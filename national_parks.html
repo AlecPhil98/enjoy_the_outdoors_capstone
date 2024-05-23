@@ -38,26 +38,30 @@
     <!-- button by location -->
     <div class="d-inline-flex p-2">
 
-      <input type="radio" name="parkLocation" id="parkLocation">
-      <label for="parkLocation">Location</label>
+      <input type="radio" name="locationOrType" id="parkLocation" value="location" checked>
+      <label for="locationOrType">Location</label>
 
     </div>
     <!-- button by type of of park -->
     <div class="d-inline-flex p-2">
 
-      <input type="radio" name="parkType" id="parkType">
-      <label for="parkType">Type</label>
+      <input type="radio" name="locationOrType" id="parkType" value="typeOf">
+      <label for="locationOrType">Type</label>
 
     </div>
   </div>
 
 
 
-  <!-- deopdown for our national parks -->
+  <!-- drSopdown for our national parks -->
   <select name="parkSelect" id="parkSelect">
 
+  </select>
+  <!-- dropdown for park type  -->
+  <select name="parkTypeOf" id="parkTypeOf">
 
   </select>
+
   <!-- this is our table for our results -->
   <table id="nationalParkTable" name="nationalParkTable">
 
@@ -70,16 +74,36 @@
       <th>ZipCode</th>
       <th>Phone</th>
       <th>Fax</th>
+      <th>URL</th>
     </head>
     <tbody id="nationalParkTableBody" name="nationalParkTableBody">
 
 
     </tbody>
 
+  </table>
+
+  <table id="parkTypeTable" name="parkTypeTable">
+
+    <head>
+      <th>LocationID</th>
+      <th>LocationName</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>ZipCode</th>
+      <th>Phone</th>
+      <th>Fax</th>
+      <th>URL</th>
+    </head>
+    <tbody id="parkTypeTableBody" name="parkTypeTableBody">
 
 
+    </tbody>
 
   </table>
+  
+  
 
   <!-- Bootstrap JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
