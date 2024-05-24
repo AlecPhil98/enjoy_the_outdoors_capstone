@@ -2,56 +2,38 @@
 
 window.onload = () => {
 
-    /*
-        You can remove the following console.log() lines.
-        They are here to verify that we have access to the data
-        The data script files are located in the scripts/data directory
-    */
-
-    //log the locationsArray to the console (scripts/data/locationData.js)
-    console.log(locationsArray)
-
-    //log the parkTypesArray to the console (scripts/data/parkTypeData.js)
-    console.log(parkTypesArray)
-
-    //log the nationalParksArray to the console (scripts/data/nationalParkData.js)
-    console.log(nationalParksArray)
-
-
     // run the code that loads the drop downs
     initParkLocationsDropdown();
-    inintParkTypeDropdown();
-
     // get the location drop down 
     let parkLocationsDropdown = document.querySelector("#parkSelect");
     // make sure we run the code to work with the nation park data 
     parkLocationsDropdown.addEventListener("change", getLocation);
 
-    let parkTypeOf = document.querySelector("#parkTypeOf")
-    parkTypeOf.addEventListener("change", getParkTypeOf)
+    // run the park type dropdown
+    inintParkTypeDropdown();
+    let parkTypeDropdown = document.querySelector("#parkTypeOf")
+    parkTypeDropdown.addEventListener("change", getParkTypeOf)
 
-
-    // hideElement("#parkSelect")
-    // hideElement("#parkTypeOf")
 
     // let locationRadio = document.querySelector("#parkLocationRadio")
     // let parkTypeRadio = document.querySelector("#parkTypeRadio")
 
-    // locationRadio.addEventListener("change", hideShhowRadioDog)
-    // parkTypeRadio.addEventListener("change", hideShhowRadioDog)
+    // hideElement("#parkSelect");
+    // hideElement("#parkTypeOf");
 
-
+    // locationRadio.addEventListener("change", hideShowRadioDog)
+    // parkTypeRadio.addEventListener("change", hideShowRadioDog)
 
 }
 
-// function hideShhowRadioDog(event) {
+// function hideShowRadioDog(event) {
 
 //     if (event.target.value === "type") {
-//         showElement("parkTypeOf")
-//         hideElement("parkSelect");
+//         showElement("#parkTypeOf");
+//         hideElement("#parkSelect");
 //     } else {
-//         showElement("parkSelect")
-//         hideElement("parkTypeOf");
+//         showElement("#parkSelect");
+//         hideElement("#parkTypeOf");
 //     }
 // }
 
@@ -76,14 +58,11 @@ function getLocation(event) {
     // get the selected location drom the dropdown which is the event.target
     let selectedPark = event.target.value;
 
-
     // console.log(selectedPark)
 
     let matchingLocations = nationalParksArray.filter((nationalPark) => {
 
-
         return nationalPark.State === selectedPark;
-
     })
 
     let tablebody = document.querySelector("#nationalParkTableBody");
@@ -98,19 +77,19 @@ function getLocation(event) {
 
 }
 // function for getting the body table for type of park 
-function getParkTypeOf(event2) {
+function getParkTypeOf(event) {
 
-    let selectedParkType = event2.target.value
+    let selectedParkType = event.target.value
 
     let matchingParkType = nationalParksArray.filter((parkType) => {
 
-        return parkType.LocationName.toLowerCase().indexOf(selectedParkType.toLowerCase())!==-1;
+        return parkType.LocationName.toLowerCase().indexOf(selectedParkType.toLowerCase()) !== -1;
 
     })
 
     let tablebody = document.querySelector("#nationalParkTableBody");
 
-    tablebody.innerHTML = ""
+    tablebody.innerHTML = "";
 
     matchingParkType.forEach((parkType) => {
 
@@ -137,7 +116,6 @@ function buildTableRow(tablebody, data) {
         let newTd = newRow.insertCell();
         newTd.innerText = data[property];
 
-
     }
 
     let newTd = newRow.insertCell();
@@ -145,46 +123,46 @@ function buildTableRow(tablebody, data) {
 }
 
 // function for building the body table for park type search using normal 
-function buildTypeOfTableRow(typeOFTableBody, parkType) {
+// function buildTypeOfTableRow(typeOFTableBody, parkType) {
 
-    let newTypeRow = typeOFTableBody.insertRow();
+//     let newTypeRow = typeOFTableBody.insertRow();
 
-    let cell1 = newTypeRow();
-    cell1.innerHTML = parkType.LocationID;
+//     let cell1 = newTypeRow();
+//     cell1.innerHTML = parkType.LocationID;
 
-    let cell2 = newTypeRow();
-    cell2.innerHTML = parkType.LocationName;
-
-
-    let cell3 = newTypeRow();
-    cell3.innerHTML = parkType.Address;
+//     let cell2 = newTypeRow();
+//     cell2.innerHTML = parkType.LocationName;
 
 
-    let cell4 = newTypeRow();
-    cell4.innerHTML = parkType.City;
+//     let cell3 = newTypeRow();
+//     cell3.innerHTML = parkType.Address;
 
 
-    let cell5 = newTypeRow();
-    cell5.innerHTML = parkType.State;
+//     let cell4 = newTypeRow();
+//     cell4.innerHTML = parkType.City;
 
 
-    let cell6 = newTypeRow();
-    cell6.innerHTML = parkType.ZipCode;
+//     let cell5 = newTypeRow();
+//     cell5.innerHTML = parkType.State;
 
 
-    let cell7 = newTypeRow();
-    cell7.innerHTML = parkType.Phone;
-
-    let cell8 = newTypeRow();
-    cell8.innerHTML = parkType.Fax;
+//     let cell6 = newTypeRow();
+//     cell6.innerHTML = parkType.ZipCode;
 
 
-    let cell9 = newTypeRow();
-    cell9.innerHTML = parkType.URL;
+//     let cell7 = newTypeRow();
+//     cell7.innerHTML = parkType.Phone;
+
+//     let cell8 = newTypeRow();
+//     cell8.innerHTML = parkType.Fax;
+
+
+//     let cell9 = newTypeRow();
+//     cell9.innerHTML = parkType.URL;
 
 
 
-}
+// }
 
 function initParkLocationsDropdown() {
 
