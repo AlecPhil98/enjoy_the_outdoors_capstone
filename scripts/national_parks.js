@@ -15,42 +15,42 @@ window.onload = () => {
     parkTypeDropdown.addEventListener("change", getParkTypeOf)
 
 
-    // let locationRadio = document.querySelector("#parkLocationRadio")
-    // let parkTypeRadio = document.querySelector("#parkTypeRadio")
+    let locationRadio = document.querySelector("#parkLocationRadio")
+    let parkTypeRadio = document.querySelector("#parkTypeRadio")
 
-    // hideElement("#parkSelect");
-    // hideElement("#parkTypeOf");
+    hideElement("#parkSelect");
+    hideElement("#parkTypeOf");
 
-    // locationRadio.addEventListener("change", hideShowRadioDog)
-    // parkTypeRadio.addEventListener("change", hideShowRadioDog)
+    locationRadio.addEventListener("change", hideShowRadioDog)
+    parkTypeRadio.addEventListener("change", hideShowRadioDog)
 
 }
 
-// function hideShowRadioDog(event) {
+function hideShowRadioDog(event) {
 
-//     if (event.target.value === "type") {
-//         showElement("#parkTypeOf");
-//         hideElement("#parkSelect");
-//     } else {
-//         showElement("#parkSelect");
-//         hideElement("#parkTypeOf");
-//     }
-// }
+    if (event.target.value === "typeOf") {
+        showElement("#parkTypeOf");
+        hideElement("#parkSelect");
+    } else {
+        showElement("#parkSelect");
+        hideElement("#parkTypeOf");
+    }
+}
 
 
-// //This function will hide an HTML element on the page
-// //Just pass it the id of the element you want to hide
-// function hideElement(someSelector) {
-//     let el = document.querySelector(someSelector);
-//     el.style.display = "none";
-// }
+//This function will hide an HTML element on the page
+//Just pass it the id of the element you want to hide
+function hideElement(someSelector) {
+    let el = document.querySelector(someSelector);
+    el.style.display = "none";
+}
 
-// //This function will show an HTML element on the page
-// //Just pass it the id of the element you want to show
-// function showElement(someSelector) {
-//     let el = document.querySelector(someSelector);
-//     el.style.display = "block";
-// }
+//This function will show an HTML element on the page
+//Just pass it the id of the element you want to show
+function showElement(someSelector) {
+    let el = document.querySelector(someSelector);
+    el.style.display = "block";
+}
 
 
 // function for getting the body table for park location 
